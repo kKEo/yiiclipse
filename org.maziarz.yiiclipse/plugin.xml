@@ -106,5 +106,15 @@
          </description>
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
+      <hyperlinkDetector
+            activate="true"
+            class="org.maziarz.yiiclipse.hyperlinks.YiiHyperlinkDetector"
+            id="org.maziarz.yiiclipse.hyperlinkDetector"
+            name="Yiiclipse hyperlinks"
+            targetId="org.eclipse.php.core.phpsource">
+      </hyperlinkDetector>
+   </extension>
 
 </plugin>

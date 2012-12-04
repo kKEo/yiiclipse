@@ -221,15 +221,14 @@ public class WizardNewYiiProjectConfigurationPage extends WizardPage implements 
 			}
 		});
 
-		/*-
 		removeYiiliteButton = new Button(group, SWT.CHECK);
 		removeYiiliteButton.setText("Remove yiilite.php file from buildpath");
+		removeYiiliteButton.setToolTipText("Phisically deletes yiilite.php from downloaded framework.");
 		removeYiiliteButton.setSelection(true);
 		GridData layoutData = new GridData(GridData.GRAB_HORIZONTAL);
 		layoutData.horizontalSpan = 3;
 		removeYiiliteButton.setLayoutData(layoutData);
-		*/
-
+		
 		final Group chooseApplicationGroup = new Group(container, SWT.None);
 		gData = new GridData(SWT.FILL, SWT.None, true, false);
 		gData.horizontalSpan = 3;
