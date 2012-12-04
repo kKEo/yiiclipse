@@ -6,7 +6,9 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.maziarz.yiiclipse.YiiclipseBundle
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipse.core.runtime;version="3.4.0",
+Import-Package: org.eclipse.core.filesystem,
+ org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.core.runtime.preferences;version="3.3.0",
  org.eclipse.dltk.core,
  org.eclipse.jface.dialogs,
  org.eclipse.jface.resource,

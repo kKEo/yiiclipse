@@ -65,5 +65,46 @@
          </enablement>
       </decorator>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.maziarz.yiiclipse.preferences.TopLevelPage"
+            id="org.maziarz.yiiclipse.prefs.parent"
+            name="Yiiclipse">
+      </page>
+      <page
+            category="org.maziarz.yiiclipse.prefs.parent"
+            class="org.maziarz.yiiclipse.preferences.GeneralPage"
+            id="org.maziarz.yiiclipse.prefs.general"
+            name="General">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.maziarz.yiiclipse.preferences.YiiclipsePreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.maziarz.yiiclipse.wizards.category"
+            name="Yiiclipse">
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="org.maziarz.yiiclipse.wizards.category"
+            class="org.maziarz.yiiclipse.wizards.NewProjectWizard"
+            finalPerspective="org.eclipse.php.perspective"
+            icon="icons/yii.gif"
+            id="org.maziarz.yiiclipse.wizards.newProject"
+            name="New Yii Framework Project"
+            preferredPerspectives="org.eclipse.php.perspective"
+            project="true">
+         <description>
+            Creates new Yii Framework based PHP Project
+         </description>
+      </wizard>
+   </extension>
 
 </plugin>
