@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.maziarz.yiiclipse.feature"
+      label="Yiiclipse Core"
+      version="1.2.0.qualifier"
+      provider-name="Maziarz.org">
+
+   <requires>
+      <import feature="org.eclipse.php" version="3.0.0.v20110516-1100-7V--F8NcJTTK4UE9TTJJ"/>
+   </requires>
+
+   <plugin
+         id="org.maziarz.yiiclipse"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

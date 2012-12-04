@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.maziarz.yiiclipse.feature_1.2.0.qualifier.jar" id="org.maziarz.yiiclipse.feature" version="1.2.0.qualifier">
+      <category name="org.maziarz.category"/>
+   </feature>
+   <category-def name="org.maziarz.category" label="Yiiclipse">
+      <description>
+         Yiiclipse is set of plugins enhancing development of PHP applications based on Yii Framework.
+      </description>
+   </category-def>
+</site>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="id1"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.maziarz.yiiclipse.YiiclipseNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.maziarz.yiiclipse.builder">
+      </builder>
+   </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="org.maziarz.yiiclipse.YiiclipseIncrementalProjectBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.projectConfigure?before=additions">
+         <command
+               commandId="org.maziarz.yiiclipse.commands.addYiiSupport"
+               label="Toggle Yii Support"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.maziarz.yiiclipse.handlers.ToggleYiiSupportHandler"
+            id="org.maziarz.yiiclipse.commands.addYiiSupport"
+            name="Add Yii Support">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/yii8x8.gif"
+            id="org.maziarz.yiiclipse.image1"
+            natureId="org.maziarz.yiiclipse.nature">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.maziarz.yiiclipse.YiiProjectLightweightDecorator"
+            id="org.maziarz.yiiclipse.decorators.yiiProject"
+            label="Yii Project">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.dltk.core.IScriptProject">
+            </objectClass>
+         </enablement>
+      </decorator>
+   </extension>
+
+</plugin>
