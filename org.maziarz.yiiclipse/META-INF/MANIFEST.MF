@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Yiiclipse
 Bundle-SymbolicName: org.maziarz.yiiclipse;singleton:=true
 Bundle-Version: 1.2.0.qualifier
-Bundle-Activator: org.maziarz.yiiclipse.Activator
+Bundle-Activator: org.maziarz.yiiclipse.YiiclipseBundle
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.core.runtime;version="3.4.0",

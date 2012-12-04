@@ -23,19 +23,19 @@ public class YiiclipseBundle extends AbstractUIPlugin {
 
 	private static Logger logger;
 	
-//	private static YiiPathResolver pathResolver;
-	
 	public YiiclipseBundle() {}
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-//		_appReg = new IApplicationRegistry();
-		logger = Logger.getAnonymousLogger();
-		ConsoleHandler consoleHandler = new ConsoleHandler();
-		consoleHandler.setFormatter(new SimpleFormatter());
-		logger.addHandler(consoleHandler);
 		
-		plugin = this;
+		if (plugin == null) {
+			logger = Logger.getAnonymousLogger();
+			ConsoleHandler consoleHandler = new ConsoleHandler();
+			consoleHandler.setFormatter(new SimpleFormatter());
+			logger.addHandler(consoleHandler);
+			
+			plugin = this;
+		}
 		
 		debug("Yiiclipse is up and running.");
 	}
