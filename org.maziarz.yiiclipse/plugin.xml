@@ -116,5 +116,19 @@
             targetId="org.eclipse.php.core.phpsource">
       </hyperlinkDetector>
    </extension>
-
+   <extension
+         point="org.eclipse.php.core.goalEvaluatorFactories">
+         <factory 
+         	class="org.maziarz.yiiclipse.YiiGoalEvaluatorFactory"
+		    priority="100">
+		 </factory>
+   </extension>
+   <extension
+         point="org.eclipse.php.core.completionContextResolvers">
+         <resolver class="org.maziarz.yiiclipse.completion.YiiContextResolver"/>
+   </extension>
+   <extension
+         point="org.eclipse.php.core.completionStrategyFactories">
+         <factory class="org.maziarz.yiiclipse.completion.YiiCompletionStrategyFactory"/>
+   </extension>
 </plugin>
