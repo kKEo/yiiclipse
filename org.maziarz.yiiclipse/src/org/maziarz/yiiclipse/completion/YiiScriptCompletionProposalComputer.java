@@ -8,17 +8,15 @@ import org.eclipse.jface.text.templates.TemplateCompletionProcessor;
 
 public class YiiScriptCompletionProposalComputer extends ScriptCompletionProposalComputer implements IScriptCompletionProposalComputer {
 
-	public YiiScriptCompletionProposalComputer() {
-	}
-
 	@Override
 	protected TemplateCompletionProcessor createTemplateProposalComputer(ScriptContentAssistInvocationContext context) {
-		return null;
+		return new YiiclipseTemplateCompletionProcessor(context);
 	}
 
 	@Override
 	protected ScriptCompletionProposalCollector createCollector(ScriptContentAssistInvocationContext context) {
-		return null;
+		ScriptCompletionProposalCollector collector = new YiiclipseCompletionProposalCollector(context.getSourceModule());
+		return collector;
 	}
 
 }

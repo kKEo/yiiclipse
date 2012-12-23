@@ -56,7 +56,7 @@ public class YiiPathResolver {
 					if (!extraFolders.isEmpty()) {
 						extraFolders += File.separator;
 					}
-					String viewPathId = extraFolders + controller.toLowerCase() + File.separator + fileName.trim() + ".php";
+					String viewPathId = extraFolders + StringUtils.decapitalize(controller) + File.separator + fileName.trim() + ".php";
 					viewFilePath = baseContorllersPath.append("views").append(viewPathId).toOSString();
 				} else {
 					// try to find views folder

@@ -1,11 +1,14 @@
 package org.maziarz.yiiclipse.wizards;
 
+import java.io.ByteArrayInputStream;
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileInfo;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -19,6 +22,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.eclipse.ui.ide.undo.CreateFolderOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 
@@ -26,6 +30,9 @@ public class YiiProjectWorkspaceHelper {
 
 	private IRunnableContext runnableContext;
 
+	public static YiiProjectWorkspaceHelper INSTANCE = new YiiProjectWorkspaceHelper();
+	
+	
 	public void buildBasicProjectStructure(IRunnableContext context, IProject project) {
 
 		this.runnableContext = context;
@@ -69,6 +76,40 @@ public class YiiProjectWorkspaceHelper {
 
 		return folderHandle;
 	}
+	
+	public IFile createFile(IContainer container, String fileName) {
+		
+		IPath filePath =container.getFullPath().append(fileName);
+		IWorkspaceRoot workspaceRoot = container.getWorkspace().getRoot();
+		IFile fileHandle = workspaceRoot.getFile(filePath);
+		
+		IRunnableWithProgress op = this.createFileOperation(fileHandle);
+		
+		try {
+			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(op);
+		} catch (Exception e) {
+			MessageDialog.openError(getShell(), "Creating file: "+fileName + " Error", e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return fileHandle;
+	}
+
+	private IRunnableWithProgress createFileOperation(final IFile fileHandle) {
+		return new IRunnableWithProgress() {
+			
+			@Override
+			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				CreateFileOperation op = new CreateFileOperation(fileHandle, null, new ByteArrayInputStream("".getBytes()), "Creating file");
+				
+				try {
+					op.execute(monitor, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
+				} catch (ExecutionException e) {
+					throw new IllegalStateException(e);
+				}
+			}
+		};
+	}
 
 	protected IRunnableWithProgress createFolderOperation(final IFolder folderHandle) {
 
@@ -80,7 +121,7 @@ public class YiiProjectWorkspaceHelper {
 				try {
 					op.execute(monitor, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
 				} catch (Exception e) {
-					throw new InvocationTargetException(e);
+					throw new IllegalStateException(e);
 				}
 			}
 		};

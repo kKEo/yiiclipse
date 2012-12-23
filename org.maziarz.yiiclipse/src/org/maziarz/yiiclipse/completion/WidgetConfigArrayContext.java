@@ -80,7 +80,8 @@ public class WidgetConfigArrayContext extends AbstractCompletionContext implemen
 				}
 		
 				prefix = getPrefixWithoutProcessing();
-				System.out.println("Prefix: "+prefix);
+				
+//				System.out.println("Prefix: "+prefix);
 				
 				return true;
 			}

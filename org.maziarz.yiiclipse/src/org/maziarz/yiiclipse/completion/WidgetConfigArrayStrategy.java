@@ -47,7 +47,7 @@ public class WidgetConfigArrayStrategy extends AbstractCompletionStrategy implem
 			return;
 		}
 
-		CompletionRequestor requestor = ctx.getCompletionRequestor();
+		//CompletionRequestor requestor = ctx.getCompletionRequestor();
 		final String prefix = ctx.getPrefix();
 		SourceRange replaceRange = getReplacementRange(ctx);
 		
@@ -59,9 +59,6 @@ public class WidgetConfigArrayStrategy extends AbstractCompletionStrategy implem
 		}
 		
 		IType type = pathHelper.findWidgetType(widget, ctx.getSourceModule());
-		
-//		String widgetPath = pathResolver.resolveWidgetPath(widget, ctx.getSourceModule());
-//		getIFile(widgetPath);
 		
 		for (IField field : type.getFields()){
 			if (PHPFlags.isPublic(field.getFlags())) {

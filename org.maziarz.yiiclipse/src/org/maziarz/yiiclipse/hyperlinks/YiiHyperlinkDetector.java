@@ -52,7 +52,8 @@ public class YiiHyperlinkDetector extends AbstractHyperlinkDetector {
 		final ISourceModule sourceModule = (ISourceModule) input;
 		ModuleDeclaration moduleDeclaration = SourceParserUtil.getModuleDeclaration(sourceModule, null);
 		
-		ASTVisitor visitor = new YiiHyperlinkASTVisitor2(sourceModule, new YiiPathResolver(new WorkspacePathHelper()), offset, file[0], selectRegion[0]);
+		YiiPathResolver pathResolver = new YiiPathResolver(new WorkspacePathHelper());
+		ASTVisitor visitor = new YiiHyperlinkASTVisitor2(sourceModule, pathResolver, offset, file[0], selectRegion[0]);
 		
 		try {
 			moduleDeclaration.traverse(visitor);
@@ -63,7 +64,7 @@ public class YiiHyperlinkDetector extends AbstractHyperlinkDetector {
 		file[0] = ((YiiHyperlinkASTVisitor2)visitor).getFile();
 		
 		if (file[0]!=null){
-			YiiclipseBundle.debug("Found file: "+file[0]);
+			YiiclipseBundle.debug("Expected location: "+file[0]);
 		}
 		
 		selectRegion[0] = ((YiiHyperlinkASTVisitor2)visitor).getSelectRegion();

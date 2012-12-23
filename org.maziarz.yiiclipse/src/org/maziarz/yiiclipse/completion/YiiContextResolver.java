@@ -25,6 +25,8 @@ public class YiiContextResolver extends CompletionContextResolver {
 			contexts.add(new WidgetConfigArrayContext());
 		}
 		
+		//contexts.add(new InControllerContext());
+		
 		return contexts.toArray(new ICompletionContext[0]);
 	}
 	

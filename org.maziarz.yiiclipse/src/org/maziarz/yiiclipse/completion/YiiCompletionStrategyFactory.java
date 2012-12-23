@@ -20,6 +20,9 @@ public class YiiCompletionStrategyFactory implements ICompletionStrategyFactory{
 			} else
 			if (ctx.getClass() == WidgetConfigArrayContext.class){
 				result.add(new WidgetConfigArrayStrategy(ctx));
+			} else 
+			if (ctx instanceof InControllerContext) {
+				result.add(new InControllerNewActionStrategy(ctx));
 			}
 			
 		}

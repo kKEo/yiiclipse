@@ -85,8 +85,6 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 	@Override
 	public boolean endvisit(TypeDeclaration s) throws Exception {
 
-		// System.out.println("Visited expressions: "+this.visitedExpressions);
-
 		if (results.size() > 0) {
 			HyperlinkTargetCandidate theLast = results.getLast();
 			selectFileAndRegion(theLast.getExpression(), theLast.getView(), theLast.getType());

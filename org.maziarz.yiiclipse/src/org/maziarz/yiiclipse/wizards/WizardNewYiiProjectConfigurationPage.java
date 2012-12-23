@@ -607,6 +607,6 @@ public class WizardNewYiiProjectConfigurationPage extends WizardPage implements 
 	}
 
 	private void createYiiProjectDirectoryStructure(IProject project) {
-		new YiiProjectWorkspaceHelper().buildBasicProjectStructure(getContainer(), project);
+		YiiProjectWorkspaceHelper.INSTANCE.buildBasicProjectStructure(getContainer(), project);
 	}
 }
