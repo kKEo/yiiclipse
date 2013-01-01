@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+	<extension id="view_problem" point="org.eclipse.core.resources.markers" name="View not found problem">
+		<super type="org.eclipse.core.resources.textmarker"/>
+		<super type="org.eclipse.core.resources.problemmarker"/>
+		<persistent value="false"/>
+		<attribute name="id"/>
+		<attribute name="flags"/>
+		<attribute name="arguments"/>
+	</extension>
+
    <extension
          id="org.maziarz.yiiclipse.nature"
          point="org.eclipse.core.resources.natures">
@@ -152,4 +161,23 @@
          </partition>
       </scriptCompletionProposalComputer>
    </extension>
+   <extension
+         point="org.eclipse.dltk.core.buildParticipant">
+      <buildParticipant
+            class="org.maziarz.yiiclipse.validate.BuildParticipantFactory"
+            id="org.maziarz.yiiclipse.buildParticipant"
+            name="Yiiclipse Participant"
+            nature="org.eclipse.php.core.PHPNature">
+      </buildParticipant>
+   </extension>
+      <extension
+         point="org.eclipse.php.ui.quickFixProcessors">
+   <quickFixProcessor
+            class="org.maziarz.yiiclipse.quickfix.ViewQuickFixProcessor"
+            id="org.maziarz.yiiclipse.viewQuickFixProcessor"
+            name="Create missing view">
+            <!--  -->
+      </quickFixProcessor>
+         </extension>
+   
 </plugin>

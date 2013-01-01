@@ -19,6 +19,7 @@ import org.eclipse.php.internal.core.compiler.ast.nodes.PHPFieldDeclaration;
 import org.eclipse.php.internal.core.compiler.ast.nodes.Scalar;
 import org.maziarz.yiiclipse.hyperlinks.HyperlinkTargetCandidate.HyperlinkTargetType;
 import org.maziarz.yiiclipse.utils.ASTUtils;
+import org.maziarz.yiiclipse.utils.StringUtils;
 import org.maziarz.yiiclipse.utils.YiiPathResolver;
 
 public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
@@ -145,7 +146,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 
 				Expression valueExpr = assignment.getValue();
 				if (valueExpr instanceof Scalar) {
-					String viewPath = ASTUtils.stripQuotes(((Scalar) valueExpr).getValue());
+					String viewPath = StringUtils.stripQuotes(((Scalar) valueExpr).getValue());
 					results.add(new HyperlinkTargetCandidate(valueExpr, viewPath));
 				}
 
@@ -161,7 +162,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 						for (Object arg : callExpr.getArgs().getChilds()) {
 							if (arg instanceof Scalar) {
 								Scalar widgetPath = ((Scalar) arg);
-								widget = ASTUtils.stripQuotes(widgetPath.getValue());
+								widget = StringUtils.stripQuotes(widgetPath.getValue());
 								String filePath = pathResolver.resolveWidgetPath(widget, sourceModule);
 
 								if (!filePath.isEmpty() && widgetPath.sourceStart() < offset && offset < widgetPath.sourceEnd()) {
@@ -179,7 +180,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 						for (Object arg : callExpr.getArgs().getChilds()) {
 							if (arg instanceof Scalar) {
 								Scalar widgetPath = ((Scalar) arg);
-								widget = ASTUtils.stripQuotes(widgetPath.getValue());
+								widget = StringUtils.stripQuotes(widgetPath.getValue());
 								String filePath = pathResolver.resolveWidgetPath(widget, sourceModule);
 
 								if (widgetPath.sourceStart() < offset && offset < widgetPath.sourceEnd()) {
@@ -268,18 +269,10 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 			view = "//layouts/" + view;
 		}
 
-		String viewFilePath = getPathResolver().resolveViewPath(sourceModule, currentType, view);
+		String typeName = (currentType!=null)?currentType.getName():null;
+		String viewFilePath = YiiPathResolver.resolveViewPath(sourceModule, typeName, view);
 		file = viewFilePath;
 		found = true;
-	}
-	
-	public YiiPathResolver getPathResolver() {
-		
-		if (pathResolver == null){
-			pathResolver = new YiiPathResolver(new WorkspacePathHelper());
-		}
-		
-		return pathResolver;
 	}
 	
 	public void setPathResolver(YiiPathResolver resolver){

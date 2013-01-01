@@ -5,32 +5,40 @@ import java.io.File;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.dltk.ast.declarations.TypeDeclaration;
 import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.core.ISourceModule;
 import org.maziarz.yiiclipse.YiiclipseBundle;
+import org.maziarz.yiiclipse.hyperlinks.WorkspacePathHelper;
 
 public class YiiPathResolver {
 	
 	private IYiiPathsHelper pathsHelper;
+	private static YiiPathResolver pathResolver;
 	
 	public YiiPathResolver(IYiiPathsHelper pathHelper) {
 		this.pathsHelper = pathHelper;
 	}
 
-	public String resolveViewPath(final ISourceModule sourceModule, TypeDeclaration currentType, String fileName) {
+	private static YiiPathResolver getPathResolver() {
+		
+		if (pathResolver == null){
+			pathResolver = new YiiPathResolver(new WorkspacePathHelper());
+		}
+		
+		return pathResolver;
+	}
+	
+	public static String resolveViewPath(final ISourceModule sourceModule, String currentTypeName, String fileName) {
 
+		
 		String viewFilePath = null;
 
-		// find out if it is module
-//		sourceModule.getPath()
-
 		// method invocation is inside of other view (not from the controller class)
-		if (currentType == null) {
+		if (currentTypeName == null) {
 
 			// target view is located in other folder
 			if (fileName.startsWith("//")) {
-				viewFilePath = resolveAliasPath("application.protected.views", sourceModule) + File.separator + fileName.substring(2, fileName.length())
+				viewFilePath = getPathResolver().resolveAliasPath("application.views", sourceModule) + File.separator + fileName.substring(2, fileName.length())
 						+ ".php";
 			} else {
 				IPath currentPath = sourceModule.getPrimaryElement().getParent().getPath();
@@ -39,15 +47,14 @@ public class YiiPathResolver {
 
 		} else {
 			if (fileName.startsWith("//")) {
-				viewFilePath = resolveAliasPath("application.protected.views", sourceModule) + File.separator + fileName.substring(2, fileName.length())
+				viewFilePath = getPathResolver().resolveAliasPath("application.views", sourceModule) + File.separator + fileName.substring(2, fileName.length())
 						+ ".php";
 			} else if (fileName.contains("/")) {
-				// String viewsFolder = sourceModule.getParent().getElementName();
-				viewFilePath = resolveAliasPath("application.protected.views", sourceModule) + File.separator + fileName + ".php";
+				viewFilePath = getPathResolver().resolveAliasPath("application.views", sourceModule) + File.separator + fileName + ".php";
 			} else {
-				int controllerIdx = currentType.getName().lastIndexOf("Controller");
+				int controllerIdx = currentTypeName.lastIndexOf("Controller");
 				if (controllerIdx != -1) {
-					String controller = currentType.getName().substring(0, controllerIdx);
+					String controller = currentTypeName.substring(0, controllerIdx);
 					
 					IModelElement primaryElement = sourceModule.getPrimaryElement();
 					IPath baseContorllersPath = getBaseControllersPath(primaryElement.getPath());

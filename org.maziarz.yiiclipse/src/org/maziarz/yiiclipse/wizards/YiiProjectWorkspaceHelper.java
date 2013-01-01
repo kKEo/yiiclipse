@@ -16,6 +16,8 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -25,6 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.eclipse.ui.ide.undo.CreateFolderOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
+import org.maziarz.yiiclipse.YiiclipseBundle;
 
 public class YiiProjectWorkspaceHelper {
 
@@ -66,52 +69,37 @@ public class YiiProjectWorkspaceHelper {
 		this.putPermissions(folder, other_write);
 	}
 
-	protected IFolder createFolder(IContainer container, String folderName) {
+	public IFolder createFolder(IContainer container, String folderName) {
 		IPath folderPath = container.getFullPath().append(folderName);
 		IWorkspaceRoot workspaceRoot = container.getWorkspace().getRoot();
 		IFolder folderHandle = workspaceRoot.getFolder(folderPath);
 
-		IRunnableWithProgress op = this.createFolderOperation(folderHandle);
-		performOperationWithBusyCursor(op, "Creating folder: " + folderName);
+		ISafeRunnable op = this.createFolderOperation(folderHandle);
+		SafeRunner.run(op);
 
 		return folderHandle;
 	}
 	
-	public IFile createFile(IContainer container, String fileName) {
-		
-		IPath filePath =container.getFullPath().append(fileName);
-		IWorkspaceRoot workspaceRoot = container.getWorkspace().getRoot();
-		IFile fileHandle = workspaceRoot.getFile(filePath);
-		
-		IRunnableWithProgress op = this.createFileOperation(fileHandle);
-		
-		try {
-			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(op);
-		} catch (Exception e) {
-			MessageDialog.openError(getShell(), "Creating file: "+fileName + " Error", e.getMessage());
-			e.printStackTrace();
-		}
-		
-		return fileHandle;
-	}
-
-	private IRunnableWithProgress createFileOperation(final IFile fileHandle) {
-		return new IRunnableWithProgress() {
+	private ISafeRunnable createFolderOperation(final IFolder folderHandle) {
+		return new ISafeRunnable() {
 			
 			@Override
-			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-				CreateFileOperation op = new CreateFileOperation(fileHandle, null, new ByteArrayInputStream("".getBytes()), "Creating file");
+			public void run() throws Exception {
+				CreateFolderOperation op = new CreateFolderOperation(folderHandle, null, "Creating folder");
+				op.execute(null, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
+					
+				YiiclipseBundle.debug("Folder created: "+folderHandle);
+			}
+			
+			@Override
+			public void handleException(Throwable exception) {
 				
-				try {
-					op.execute(monitor, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
-				} catch (ExecutionException e) {
-					throw new IllegalStateException(e);
-				}
 			}
 		};
+		
 	}
-
-	protected IRunnableWithProgress createFolderOperation(final IFolder folderHandle) {
+	
+	protected IRunnableWithProgress createFolderOperationWithProgress(final IFolder folderHandle) {
 
 		return new IRunnableWithProgress() {
 
@@ -127,6 +115,56 @@ public class YiiProjectWorkspaceHelper {
 		};
 
 	}
+	
+	
+	public IFile createFile(IContainer container, String fileName) {
+		
+		IPath filePath =container.getFullPath().append(fileName);
+		IWorkspaceRoot workspaceRoot = container.getWorkspace().getRoot();
+		IFile fileHandle = workspaceRoot.getFile(filePath);
+		
+		ISafeRunnable op = this.createFileOperation(fileHandle);
+		SafeRunner.run(op);
+		
+		return fileHandle;
+	}
+
+	private ISafeRunnable createFileOperation(final IFile fileHandle) {
+		return new ISafeRunnable() {
+			
+			@Override
+			public void run() throws Exception {
+					CreateFileOperation op = new CreateFileOperation(fileHandle, null, new ByteArrayInputStream("".getBytes()), "Creating file");
+					op.execute(null, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
+					
+					YiiclipseBundle.debug("File created: "+fileHandle);
+			}
+			
+			@Override
+			public void handleException(Throwable exception) {
+				
+			}
+		};
+		
+	}
+	
+	private IRunnableWithProgress createFileOperationWithProgress(final IFile fileHandle) {
+		return new IRunnableWithProgress() {
+			
+			@Override
+			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				CreateFileOperation op = new CreateFileOperation(fileHandle, null, new ByteArrayInputStream("".getBytes()), "Creating file");
+				
+				try {
+					op.execute(monitor, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
+				} catch (ExecutionException e) {
+					throw new IllegalStateException(e);
+				}
+			}
+		};
+	}
+
+
 
 	protected void performOperationWithBusyCursor(IRunnableWithProgress runnable, String title) {
 
