@@ -199,9 +199,9 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 										if ("zii.widgets.CListView".equals(widget)) {
 											if (element.getKey() instanceof Scalar) {
 												Scalar key = (Scalar) element.getKey();
-												if ("itemView".equals(ASTUtils.stripQuotes(key.getValue()))) {
+												if ("itemView".equals(StringUtils.stripQuotes(key.getValue()))) {
 													if (element.getValue() instanceof Scalar) {
-														String view = ASTUtils.stripQuotes(((Scalar) element.getValue()).getValue());
+														String view = StringUtils.stripQuotes(((Scalar) element.getValue()).getValue());
 														results.add(new HyperlinkTargetCandidate(element.getValue(), view));
 													}
 												}
@@ -220,7 +220,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 							if (arg1 instanceof Scalar) {
 								Scalar view = (Scalar) arg1;
 								if (view.sourceStart() < offset && offset < view.sourceEnd()) {
-									String viewName = ASTUtils.stripQuotes(view.getValue());
+									String viewName = StringUtils.stripQuotes(view.getValue());
 									results.add(new HyperlinkTargetCandidate(view, viewName));
 								}
 							}
@@ -233,7 +233,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 							Object arg1 = arguments[0];
 							if (arg1 instanceof Scalar) {
 								Scalar scalar = (Scalar) arg1;
-								String cssName = ASTUtils.stripQuotes(scalar.getValue());
+								String cssName = StringUtils.stripQuotes(scalar.getValue());
 								String cssPath = pathResolver.resolveAliasPath("application", sourceModule) + "/" + cssName;
 								if (scalar.sourceStart() < offset && offset < scalar.sourceEnd()) {
 									file = cssPath;
@@ -248,6 +248,19 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 							}
 						}
 					} // end of "registerCssFile"
+					else if ("beginContent".equals(functionName)) {
+						Object[] arguments = callExpr.getArgs().getChilds().toArray();
+						if (arguments.length > 0) {
+							Object arg1 = arguments[0];
+							if (arg1 instanceof Scalar) {
+								Scalar view = (Scalar) arg1;
+								if (view.sourceStart() < offset && offset < view.sourceEnd()) {
+									String viewName = StringUtils.stripQuotes(view.getValue());
+									results.add(new HyperlinkTargetCandidate(view, viewName, HyperlinkTargetType.LAYOUT));
+								}
+							}
+						}
+					} // end of "beginContent"
 				}
 			}
 		}
