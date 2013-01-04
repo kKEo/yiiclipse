@@ -61,20 +61,6 @@
       </image>
    </extension>
    <extension
-         point="org.eclipse.ui.decorators">
-      <decorator
-            adaptable="true"
-            class="org.maziarz.yiiclipse.YiiProjectLightweightDecorator"
-            id="org.maziarz.yiiclipse.decorators.yiiProject"
-            label="Yii Project">
-         <enablement>
-            <objectClass
-                  name="org.eclipse.dltk.core.IScriptProject">
-            </objectClass>
-         </enablement>
-      </decorator>
-   </extension>
-   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             class="org.maziarz.yiiclipse.preferences.TopLevelPage"

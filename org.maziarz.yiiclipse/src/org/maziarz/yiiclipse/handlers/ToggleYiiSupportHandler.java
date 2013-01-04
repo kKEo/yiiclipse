@@ -11,10 +11,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.dltk.core.IScriptProject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.internal.WorkbenchPlugin;
-import org.maziarz.yiiclipse.YiiProjectLightweightDecorator;
 import org.maziarz.yiiclipse.YiiclipseBundle;
 import org.maziarz.yiiclipse.YiiclipseNature;
 
@@ -41,15 +38,6 @@ public class ToggleYiiSupportHandler extends AbstractHandler implements IHandler
 					if (project != null) {
 						try {
 							toggleYiiNature(project);
-
-							IDecoratorManager decoratorManager = WorkbenchPlugin.getDefault().getDecoratorManager();
-							final YiiProjectLightweightDecorator decorator = (YiiProjectLightweightDecorator) decoratorManager
-									.getBaseLabelProvider("org.maziarz.yiiclipse.decorators.yiiProject");
-
-							if (decorator != null) {
-								decorator.refresh(new Object[] { element });
-							}
-
 						} catch (CoreException e) {
 							YiiclipseBundle.logError(e.getMessage());
 						}
