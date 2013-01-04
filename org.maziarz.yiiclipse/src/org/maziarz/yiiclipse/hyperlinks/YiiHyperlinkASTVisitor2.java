@@ -36,10 +36,11 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 
 	private LinkedList<HyperlinkTargetCandidate> results = new LinkedList<HyperlinkTargetCandidate>();
 	private ISourceModule sourceModule;
-	
+
 	private YiiPathResolver pathResolver;
 
-	public YiiHyperlinkASTVisitor2(ISourceModule sourceModule, YiiPathResolver pathResolver, int offset, String file, Region selectRegion) {
+	public YiiHyperlinkASTVisitor2(ISourceModule sourceModule, YiiPathResolver pathResolver, int offset, String file,
+			Region selectRegion) {
 		this.sourceModule = sourceModule;
 		this.offset = offset;
 		this.pathResolver = pathResolver;
@@ -75,7 +76,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 					}
 				}
 			}
-			
+
 		} else {
 			return false;
 		}
@@ -98,9 +99,6 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 
 	@Override
 	public boolean visit(MethodDeclaration method) throws Exception {
-
-		// System.out.println("method: "+method.getName());
-
 		if (method.sourceStart() < offset && offset < method.sourceEnd()) {
 			this.currentMethod = method;
 			return true;
@@ -195,13 +193,14 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 								if (arg instanceof ArrayCreation) {
 									ArrayCreation arr = (ArrayCreation) arg;
 									for (ArrayElement element : arr.getElements()) {
-
-										if ("zii.widgets.CListView".equals(widget)) {
-											if (element.getKey() instanceof Scalar) {
-												Scalar key = (Scalar) element.getKey();
-												if ("itemView".equals(StringUtils.stripQuotes(key.getValue()))) {
+										if (element.getKey() instanceof Scalar) {
+											Scalar key = (Scalar) element.getKey();
+											if ("itemView".equals(StringUtils.stripQuotes(key.getValue()))) {
+												if (element.getValue().sourceStart() < offset
+														&& offset < element.getValue().sourceEnd()) {
 													if (element.getValue() instanceof Scalar) {
-														String view = StringUtils.stripQuotes(((Scalar) element.getValue()).getValue());
+														String view = StringUtils.stripQuotes(((Scalar) element.getValue())
+																.getValue());
 														results.add(new HyperlinkTargetCandidate(element.getValue(), view));
 													}
 												}
@@ -282,13 +281,13 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 			view = "//layouts/" + view;
 		}
 
-		String typeName = (currentType!=null)?currentType.getName():null;
+		String typeName = (currentType != null) ? currentType.getName() : null;
 		String viewFilePath = YiiPathResolver.resolveViewPath(sourceModule, typeName, view);
 		file = viewFilePath;
 		found = true;
 	}
-	
-	public void setPathResolver(YiiPathResolver resolver){
+
+	public void setPathResolver(YiiPathResolver resolver) {
 		pathResolver = resolver;
 	}
 
