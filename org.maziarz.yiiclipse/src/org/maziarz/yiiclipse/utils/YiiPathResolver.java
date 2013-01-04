@@ -133,10 +133,15 @@ public class YiiPathResolver {
 		IPath trunkedPath = path.removeLastSegments(1);
 
 		String trunkedPathStr = trunkedPath.toOSString();
-
+		
 		if ("".equals(trunkedPathStr) == false) {
 			return resolveAliasPath(trunkedPathStr, sourceModule).append(lastSegment);
 		} else {
+			// check if it is valid module name
+			IPath module = pathsHelper.getWebRoot(sourceModule).append("protected").append("modules").append(lastSegment);
+			if (module.toFile().exists()) {
+				return module;
+			}
 			return new Path(lastSegment);
 		}
 	}
