@@ -265,7 +265,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 		int startIndex = expression.sourceStart() + 1;
 		selectRegion = new Region(startIndex, view.length());
 
-		if (type == HyperlinkTargetType.LAYOUT) {
+		if (type == HyperlinkTargetType.LAYOUT && !view.startsWith("//")) {
 			view = "//layouts/" + view;
 		}
 
