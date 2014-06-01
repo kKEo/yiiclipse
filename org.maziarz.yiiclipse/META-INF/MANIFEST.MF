@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Yiiclipse
+Bundle-Name: org.maziarz.yiiclipse
 Bundle-SymbolicName: org.maziarz.yiiclipse;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.maziarz.yiiclipse.YiiclipseBundle
@@ -43,4 +43,5 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.php.ui,
  org.eclipse.dltk.ui,
  org.eclipse.dltk.validators.core
-
+Bundle-ClassPath: .,
+ junit.jar

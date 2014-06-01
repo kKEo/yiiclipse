@@ -3,6 +3,7 @@ package org.maziarz.yiiclipse.completion;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TimerTask;
+import java.util.Arrays;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -17,7 +18,6 @@ import org.eclipse.php.internal.core.PHPVersion;
 import org.eclipse.php.internal.core.util.text.PHPTextSequenceUtilities;
 import org.maziarz.yiiclipse.wizards.YiiProjectWorkspaceHelper;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 
 public class YiiclipseCompletionEngine extends ScriptCompletionEngine implements ICompletionEngine {
 
@@ -75,7 +75,8 @@ public class YiiclipseCompletionEngine extends ScriptCompletionEngine implements
 
 	private String getActionViewName(String prefix) {
 		String view = prefix.replaceFirst("action", "");
-		return StringUtils.decapitalize(view);
+		String firstLetter = (new String(new char[] {view.toCharArray()[0]})).toLowerCase();
+		return firstLetter + new String(Arrays.copyOfRange(view.toCharArray(), 1, view.length()));
 	}
 
 }
