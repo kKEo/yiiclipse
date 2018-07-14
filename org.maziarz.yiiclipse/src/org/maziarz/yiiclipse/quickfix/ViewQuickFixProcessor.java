@@ -9,16 +9,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.dltk.core.IModelElement;
+import org.eclipse.dltk.compiler.problem.IProblemIdentifier;
 import org.eclipse.dltk.core.ISourceModule;
 import org.eclipse.dltk.core.IType;
-import org.eclipse.dltk.core.ModelException;
 import org.eclipse.dltk.ui.text.completion.IScriptCompletionProposal;
-import org.eclipse.php.internal.core.ast.nodes.Scalar;
-import org.eclipse.php.internal.ui.editor.contentassist.PHPCompletionProposal;
-import org.eclipse.php.internal.ui.text.correction.IInvocationContext;
-import org.eclipse.php.internal.ui.text.correction.IProblemLocation;
-import org.eclipse.php.internal.ui.text.correction.IQuickFixProcessor;
+import org.eclipse.php.core.ast.nodes.Scalar;
+import org.eclipse.php.ui.text.correction.IInvocationContext;
+import org.eclipse.php.ui.text.correction.IProblemLocation;
+import org.eclipse.php.ui.text.correction.IQuickFixProcessor;
 import org.maziarz.yiiclipse.utils.ASTUtils;
 import org.maziarz.yiiclipse.utils.StringUtils;
 import org.maziarz.yiiclipse.utils.YiiPathResolver;
@@ -27,9 +25,10 @@ import org.maziarz.yiiclipse.wizards.YiiProjectWorkspaceHelper;
 public class ViewQuickFixProcessor implements IQuickFixProcessor {
 
 	@Override
-	public boolean hasCorrections(ISourceModule unit, int problemId) {
-		return problemId > 0;
+	public boolean hasCorrections(ISourceModule unit, IProblemIdentifier identifier) {
+		return identifier != null;
 	}
+	
 
 	@Override
 	public IScriptCompletionProposal[] getCorrections(final IInvocationContext context, IProblemLocation[] locations)
@@ -80,9 +79,9 @@ public class ViewQuickFixProcessor implements IQuickFixProcessor {
 
 		corrections.add(proposal);
 
-		// proposal =new CreateViewProposal("", 0, 100, null, "Create view file", 100);
-
 		return corrections.toArray(new IScriptCompletionProposal[corrections.size()]);
 	}
+
+
 
 }
