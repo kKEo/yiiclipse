@@ -10,15 +10,14 @@ import org.eclipse.dltk.ast.references.SimpleReference;
 import org.eclipse.dltk.ast.references.VariableReference;
 import org.eclipse.dltk.core.ISourceModule;
 import org.eclipse.jface.text.Region;
-import org.eclipse.php.internal.core.compiler.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.compiler.ast.nodes.ArrayElement;
-import org.eclipse.php.internal.core.compiler.ast.nodes.Assignment;
-import org.eclipse.php.internal.core.compiler.ast.nodes.FieldAccess;
-import org.eclipse.php.internal.core.compiler.ast.nodes.PHPCallExpression;
-import org.eclipse.php.internal.core.compiler.ast.nodes.PHPFieldDeclaration;
-import org.eclipse.php.internal.core.compiler.ast.nodes.Scalar;
+import org.eclipse.php.core.compiler.ast.nodes.ArrayCreation;
+import org.eclipse.php.core.compiler.ast.nodes.ArrayElement;
+import org.eclipse.php.core.compiler.ast.nodes.Assignment;
+import org.eclipse.php.core.compiler.ast.nodes.FieldAccess;
+import org.eclipse.php.core.compiler.ast.nodes.PHPCallExpression;
+import org.eclipse.php.core.compiler.ast.nodes.PHPFieldDeclaration;
+import org.eclipse.php.core.compiler.ast.nodes.Scalar;
 import org.maziarz.yiiclipse.hyperlinks.HyperlinkTargetCandidate.HyperlinkTargetType;
-import org.maziarz.yiiclipse.utils.ASTUtils;
 import org.maziarz.yiiclipse.utils.StringUtils;
 import org.maziarz.yiiclipse.utils.YiiPathResolver;
 
@@ -26,13 +25,11 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 
 	private boolean found = false;
 	private TypeDeclaration currentType;
-	private MethodDeclaration currentMethod;
 
 	private int offset;
 	private String file;
 	private Region selectRegion;
 
-	private int visitedExpressions = 0;
 
 	private LinkedList<HyperlinkTargetCandidate> results = new LinkedList<HyperlinkTargetCandidate>();
 	private ISourceModule sourceModule;
@@ -68,7 +65,7 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 					if ("$layout".equals(fieldDeclaration.getName())) {
 						if (fieldDeclaration.sourceStart() < offset && offset < fieldDeclaration.sourceEnd()) {
 							if (fieldDeclaration.getVariableValue() instanceof Scalar) {
-								String view = ASTUtils.stripQuotes(((Scalar) fieldDeclaration.getVariableValue()).getValue());
+								String view = StringUtils.stripQuotes(((Scalar) fieldDeclaration.getVariableValue()).getValue());
 								Expression variableValue = fieldDeclaration.getVariableValue();
 								results.add(new HyperlinkTargetCandidate(variableValue, view, HyperlinkTargetType.LAYOUT));
 							}
@@ -100,7 +97,6 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 	@Override
 	public boolean visit(MethodDeclaration method) throws Exception {
 		if (method.sourceStart() < offset && offset < method.sourceEnd()) {
-			this.currentMethod = method;
 			return true;
 		}
 
@@ -109,14 +105,11 @@ public class YiiHyperlinkASTVisitor2 extends ASTVisitor {
 
 	@Override
 	public boolean endvisit(MethodDeclaration method) throws Exception {
-		this.currentMethod = null;
 		return super.endvisit(method);
 	}
 
 	@Override
 	public boolean visit(Expression expr) throws Exception {
-
-		visitedExpressions++;
 
 		if (expr.sourceStart() < offset && offset < expr.sourceEnd()) {
 
