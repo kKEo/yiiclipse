@@ -6,13 +6,14 @@
   <parent>
     <artifactId>parent</artifactId>
     <groupId>org.maziarz.yiiclipse</groupId>
-    <version>1.2.0.qualifier</version>
+    <version>1.18.7-SNAPSHOT</version>
     <relativePath>../org.maziarz.yiiclipse.parent/pom.xml</relativePath>
   </parent>
   
   <groupId>org.maziarz</groupId>
   <artifactId>org.maziarz.yiiclipse.feature</artifactId>
-  <version>${yiiclipse-version}.qualifier</version>
+  <version>1.18.7.qualifier</version>
+  
   
   <packaging>eclipse-feature</packaging>
 </project>

@@ -2,11 +2,32 @@
 <feature
       id="org.maziarz.yiiclipse.feature"
       label="Yiiclipse Core"
-      version="1.2.0.qualifier"
+      version="1.18.7.qualifier"
       provider-name="Maziarz.org">
 
    <requires>
-      <import feature="org.eclipse.php" version="3.0.0.v20110516-1100-7V--F8NcJTTK4UE9TTJJ"/>
+      <import feature="org.eclipse.php" version="6.0.0.201806122250"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.dltk.core"/>
+      <import plugin="org.eclipse.wst.sse.ui"/>
+      <import plugin="org.eclipse.php.core"/>
+      <import plugin="org.eclipse.wst.sse.core"/>
+      <import plugin="org.eclipse.php.ui"/>
+      <import plugin="org.eclipse.dltk.ui"/>
+      <import plugin="org.eclipse.dltk.validators.core"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.jobs"/>
+      <import plugin="org.eclipse.equinox.preferences"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="org.junit"/>
    </requires>
 
    <plugin

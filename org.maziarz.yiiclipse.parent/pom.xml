@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.maziarz.yiiclipse</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.2.0.qualifier</version>
+	<version>1.18.7-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<prerequisites>
@@ -13,15 +13,15 @@
 	</prerequisites>
 
 	<properties>
-		<tycho-version>0.20.0</tycho-version>
-		<yiiclipse-version>1.2.0</yiiclipse-version>
+		<tycho-version>1.2.0</tycho-version>
+		<yiiclipse-version>1.18.7</yiiclipse-version>
 	</properties>
 	<repositories>
 		<!-- configure p2 repository to resolve against -->
 		<repository>
-			<id>kepler</id>
+			<id>photon</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/kepler</url>
+			<url>http://download.eclipse.org/releases/photon</url>
 			<!-- url>file:///home/krma/Eclipses/JunoPDTDev/plugins</url>
 			 -->
 		</repository>

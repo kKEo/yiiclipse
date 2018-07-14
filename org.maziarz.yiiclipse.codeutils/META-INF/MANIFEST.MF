@@ -5,15 +5,10 @@ Bundle-SymbolicName: org.maziarz.yiiclipse.codeutils;singleton:=true
 Bundle-Version: 1.2.0.SNAPSHOT
 Require-Bundle: org.eclipse.php.core,
  org.eclipse.dltk.core
-Import-Package: org.eclipse.core.runtime;version="3.4.0",
- org.eclipse.dltk.ast.declarations,
+Import-Package: org.eclipse.dltk.ast.declarations,
  org.eclipse.dltk.ast.parser,
  org.eclipse.jface.text,
  org.eclipse.jface.text.formatter,
- org.eclipse.php.internal.core,
- org.eclipse.php.internal.core.ast.nodes,
- org.eclipse.php.internal.core.compiler.ast.parser,
- org.eclipse.php.internal.ui.editor,
  org.eclipse.text.edits
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: .

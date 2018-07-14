@@ -2,14 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.maziarz.yiiclipse
 Bundle-SymbolicName: org.maziarz.yiiclipse;singleton:=true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.18.7.qualifier
 Bundle-Activator: org.maziarz.yiiclipse.YiiclipseBundle
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.core.filesystem,
- org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.core.runtime,
  org.eclipse.core.runtime.jobs,
- org.eclipse.core.runtime.preferences;version="3.3.0",
  org.eclipse.dltk.ast,
  org.eclipse.dltk.ast.declarations,
  org.eclipse.dltk.core,
@@ -23,14 +22,9 @@ Import-Package: org.eclipse.core.filesystem,
  org.eclipse.jface.text.contentassist,
  org.eclipse.jface.text.hyperlink,
  org.eclipse.jface.text.templates,
- org.eclipse.php.internal.core.compiler.ast.nodes,
- org.eclipse.php.internal.core.filenetwork,
- org.eclipse.php.internal.core.model,
- org.eclipse.php.internal.ui.editor,
  org.eclipse.swt.widgets,
  org.eclipse.ui.plugin,
  org.eclipse.wst.sse.core.internal.provisional.text,
- org.junit;version="4.10.0";resolution:=optional,
  org.osgi.framework
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui,
@@ -42,6 +36,7 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.wst.sse.core,
  org.eclipse.php.ui,
  org.eclipse.dltk.ui,
- org.eclipse.dltk.validators.core
+ org.eclipse.dltk.validators.core,
+ org.eclipse.php.core.parser;bundle-version="6.0.0"
 Bundle-ClassPath: .,
  junit.jar
