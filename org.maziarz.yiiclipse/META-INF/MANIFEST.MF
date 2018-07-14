@@ -9,6 +9,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.core.filesystem,
  org.eclipse.core.runtime,
  org.eclipse.core.runtime.jobs,
+ org.eclipse.core.runtime.preferences,
  org.eclipse.dltk.ast,
  org.eclipse.dltk.ast.declarations,
  org.eclipse.dltk.core,

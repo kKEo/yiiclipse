@@ -23,7 +23,7 @@ import org.eclipse.dltk.core.index2.search.ModelAccess;
 import org.eclipse.dltk.core.search.IDLTKSearchScope;
 import org.eclipse.dltk.core.search.SearchEngine;
 import org.eclipse.php.core.compiler.IPHPModifiers;
-import org.eclipse.php.internal.core.PHPLanguageToolkit;
+
 
 import org.maziarz.yiiclipse.YiiclipseBundle;
 import org.maziarz.yiiclipse.utils.IYiiPathsHelper;
@@ -106,7 +106,6 @@ public class WorkspacePathHelper implements IYiiPathsHelper{
 		ISearchRequestor requestor = new ISearchRequestor() {
 
 			@Override
-			@SuppressWarnings("unchecked")
 			public void match(int elementType, int flags, int offset,
 					int length, int nameOffset, int nameLength,
 					String elementName, String metadata, String doc,
