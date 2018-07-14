@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.maziarz.yiiclipse.codeutils
 Bundle-SymbolicName: org.maziarz.yiiclipse.codeutils;singleton:=true
-Bundle-Version: 1.2.0.SNAPSHOT
+Bundle-Version: 1.18.7.qualifier
 Require-Bundle: org.eclipse.php.core,
  org.eclipse.dltk.core
 Import-Package: org.eclipse.dltk.ast.declarations,

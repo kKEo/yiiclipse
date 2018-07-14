@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.maziarz.yiiclipse.tests
+Bundle-SymbolicName: org.maziarz.yiiclipse.tests
+Bundle-Version: 1.18.7.qualifier
+Automatic-Module-Name: org.maziarz.yiiclipse.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.dltk.core
+Require-Bundle: org.maziarz.yiiclipse;bundle-version="1.18.7",
+ org.junit;bundle-version="4.12.0"

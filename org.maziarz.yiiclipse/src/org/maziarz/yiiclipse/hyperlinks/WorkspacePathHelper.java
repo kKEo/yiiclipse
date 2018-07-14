@@ -101,7 +101,7 @@ public class WorkspacePathHelper implements IYiiPathsHelper{
 			return null;
 		}
 		
-		List<IType> types = new ArrayList<>();
+		final List<IType> types = new ArrayList<IType>();
 		
 		ISearchRequestor requestor = new ISearchRequestor() {
 

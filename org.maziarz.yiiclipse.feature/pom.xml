@@ -12,8 +12,7 @@
   
   <groupId>org.maziarz</groupId>
   <artifactId>org.maziarz.yiiclipse.feature</artifactId>
-  <version>1.18.7.qualifier</version>
-  
+  <version>1.18.7-SNAPSHOT</version>
   
   <packaging>eclipse-feature</packaging>
 </project>
