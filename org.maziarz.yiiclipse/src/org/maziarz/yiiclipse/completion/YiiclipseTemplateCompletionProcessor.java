@@ -4,11 +4,13 @@ import org.eclipse.dltk.ui.templates.ScriptTemplateAccess;
 import org.eclipse.dltk.ui.templates.ScriptTemplateCompletionProcessor;
 import org.eclipse.dltk.ui.text.completion.ScriptContentAssistInvocationContext;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.php.internal.ui.editor.templates.PhpTemplateContextType;
+//import static org.eclipse.php.internal.ui.editor.templates.PhpTemplateContextType.PHP_CONTEXT_TYPE_ID;
 import org.maziarz.yiiclipse.YiiclipseBundle;
 
 public class YiiclipseTemplateCompletionProcessor extends ScriptTemplateCompletionProcessor {
 
+	private static final String PHP_CONTEXT_TYPE_ID = "php";
+	
 	public YiiclipseTemplateCompletionProcessor(ScriptContentAssistInvocationContext context) {
 		super(context);
 		
@@ -16,7 +18,7 @@ public class YiiclipseTemplateCompletionProcessor extends ScriptTemplateCompleti
 
 	@Override
 	protected String getContextTypeId() {
-		return PhpTemplateContextType.PHP_CONTEXT_TYPE_ID;
+		return PHP_CONTEXT_TYPE_ID;
 	}
 
 	@Override
@@ -25,7 +27,7 @@ public class YiiclipseTemplateCompletionProcessor extends ScriptTemplateCompleti
 
 			@Override
 			protected String getContextTypeId() {
-				return PhpTemplateContextType.PHP_CONTEXT_TYPE_ID;
+				return PHP_CONTEXT_TYPE_ID;
 			}
 
 			@Override

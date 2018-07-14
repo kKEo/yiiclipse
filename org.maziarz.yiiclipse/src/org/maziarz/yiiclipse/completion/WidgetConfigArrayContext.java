@@ -53,7 +53,6 @@ public class WidgetConfigArrayContext extends AbstractCompletionContext implemen
 			return false;
 		}
 
-		int isInString = -1;
 		int isKey = -1;
 
 		for (int i = configArray.length() - 1; i > 0; i--) {
@@ -61,7 +60,6 @@ public class WidgetConfigArrayContext extends AbstractCompletionContext implemen
 			if (ch == '\'' || ch == '"') {
 				// context is in string
 				
-				isInString = i;
 				for (int ii = i-1; ii > 0; ii--) {
 					if(Character.isWhitespace(configArray.charAt(ii))) {
 						continue;
@@ -79,9 +77,11 @@ public class WidgetConfigArrayContext extends AbstractCompletionContext implemen
 					return false;
 				}
 		
-				prefix = getPrefixWithoutProcessing();
-				
-//				System.out.println("Prefix: "+prefix);
+				try {
+					prefix = this.getPrefix();
+				} catch (BadLocationException e) {
+					e.printStackTrace();
+				}
 				
 				return true;
 			}

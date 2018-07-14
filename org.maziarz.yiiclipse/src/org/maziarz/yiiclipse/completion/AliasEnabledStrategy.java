@@ -10,7 +10,7 @@ import org.eclipse.dltk.core.CompletionRequestor;
 import org.eclipse.dltk.core.ISourceModule;
 import org.eclipse.dltk.core.ISourceRange;
 import org.eclipse.php.core.codeassist.ICompletionContext;
-import org.eclipse.php.internal.core.codeassist.ICompletionReporter;
+import org.eclipse.php.core.codeassist.ICompletionReporter;
 import org.eclipse.php.internal.core.codeassist.strategies.AbstractCompletionStrategy;
 import org.maziarz.yiiclipse.hyperlinks.WorkspacePathHelper;
 import org.maziarz.yiiclipse.utils.YiiPathResolver;
@@ -69,7 +69,7 @@ public class AliasEnabledStrategy extends AbstractCompletionStrategy {
 		} 
 		
 		for (String proposal : proposals){
-			reporter.reportKeyword(proposal, getSuffix(), (org.eclipse.dltk.internal.core.SourceRange) replaceRange);
+			reporter.reportKeyword(proposal, getSuffix(), replaceRange);
 		}
 	}
 
