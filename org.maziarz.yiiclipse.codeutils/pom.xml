@@ -7,23 +7,15 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>org.maziarz.yiiclipse</groupId>
-		<version>1.2.0.qualifier</version>
+		<version>1.18.7-SNAPSHOT</version>
 		<relativePath>../org.maziarz.yiiclipse.parent/pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.maziarz</groupId>
 	<artifactId>org.maziarz.yiiclipse.codeutils</artifactId>
-	<version>1.2.0.qualifier</version>
+	<version>1.18.7.qualifier</version>
 
 	<packaging>eclipse-plugin</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
 </project>

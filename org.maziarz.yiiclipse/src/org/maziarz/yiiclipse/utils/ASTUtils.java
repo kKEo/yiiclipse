@@ -1,14 +1,14 @@
 package org.maziarz.yiiclipse.utils;
 
+import org.eclipse.dltk.compiler.env.ISourceType;
 import org.eclipse.dltk.core.IModelElement;
 import org.eclipse.dltk.core.IType;
-import org.eclipse.dltk.internal.core.SourceType;
-import org.eclipse.php.internal.core.ast.nodes.ASTNode;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.ITypeBinding;
-import org.eclipse.php.internal.core.ast.nodes.Identifier;
-import org.eclipse.php.internal.core.ast.nodes.TypeDeclaration;
-import org.eclipse.php.internal.core.ast.nodes.Variable;
+import org.eclipse.php.core.ast.nodes.ASTNode;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.ITypeBinding;
+import org.eclipse.php.core.ast.nodes.Identifier;
+import org.eclipse.php.core.ast.nodes.TypeDeclaration;
+import org.eclipse.php.core.ast.nodes.Variable;
 
 public class ASTUtils {
 
@@ -67,7 +67,7 @@ public class ASTUtils {
 		
 		IModelElement me = type.getPHPElement();
 		
-		if (me instanceof SourceType) {
+		if (me instanceof ISourceType) {
 			return (IType)me;
 		}
 		

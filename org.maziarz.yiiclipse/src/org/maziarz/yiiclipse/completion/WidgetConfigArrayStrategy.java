@@ -7,14 +7,13 @@ import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.dltk.core.CompletionRequestor;
 import org.eclipse.dltk.core.IField;
+import org.eclipse.dltk.core.ISourceRange;
 import org.eclipse.dltk.core.IType;
-import org.eclipse.dltk.internal.core.SourceRange;
 import org.eclipse.php.core.codeassist.ICompletionContext;
+import org.eclipse.php.core.codeassist.ICompletionReporter;
 import org.eclipse.php.core.codeassist.ICompletionStrategy;
 import org.eclipse.php.core.compiler.PHPFlags;
-import org.eclipse.php.internal.core.codeassist.ICompletionReporter;
 import org.eclipse.php.internal.core.codeassist.strategies.AbstractCompletionStrategy;
 import org.maziarz.yiiclipse.hyperlinks.WorkspacePathHelper;
 import org.maziarz.yiiclipse.utils.ASTUtils;
@@ -47,9 +46,8 @@ public class WidgetConfigArrayStrategy extends AbstractCompletionStrategy implem
 			return;
 		}
 
-		//CompletionRequestor requestor = ctx.getCompletionRequestor();
 		final String prefix = ctx.getPrefix();
-		SourceRange replaceRange = getReplacementRange(ctx);
+		ISourceRange replaceRange = getReplacementRange(ctx);
 		
 		String widget = ASTUtils.stripQuotes(ctx.getWidgetAlias());
 		

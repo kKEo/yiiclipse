@@ -1,22 +1,14 @@
 package org.maziarz.yiiclipse.completion;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.TimerTask;
 import java.util.Arrays;
+import java.util.Collections;
 
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.dltk.codeassist.ICompletionEngine;
 import org.eclipse.dltk.codeassist.ScriptCompletionEngine;
 import org.eclipse.dltk.compiler.env.IModuleSource;
 import org.eclipse.dltk.core.CompletionProposal;
-import org.eclipse.dltk.core.CompletionRequestor;
-import org.eclipse.dltk.core.IScriptProject;
 import org.eclipse.dltk.core.ISourceRange;
-import org.eclipse.php.internal.core.PHPVersion;
 import org.eclipse.php.internal.core.util.text.PHPTextSequenceUtilities;
-import org.maziarz.yiiclipse.wizards.YiiProjectWorkspaceHelper;
 
 
 public class YiiclipseCompletionEngine extends ScriptCompletionEngine implements ICompletionEngine {

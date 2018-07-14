@@ -1,15 +1,13 @@
 package org.maziarz.yiiclipse.codegen;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import junit.framework.Assert;
-
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.ExpressionStatement;
-import org.eclipse.php.internal.core.ast.nodes.Program;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.ExpressionStatement;
+import org.eclipse.php.core.ast.nodes.Program;
 import org.junit.Ignore;
-import org.junit.Test;
+
+import junit.framework.Assert;
 
 @Ignore
 public class BaseArrayMapperTest {

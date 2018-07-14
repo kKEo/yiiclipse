@@ -2,18 +2,12 @@ package org.maziarz.yiiclipse.completion;
 
 import org.eclipse.dltk.core.CompletionRequestor;
 import org.eclipse.dltk.core.IMethod;
-import org.eclipse.dltk.core.IModelElement;
-import org.eclipse.dltk.core.IModelElementVisitor;
+import org.eclipse.dltk.core.ISourceRange;
+import org.eclipse.dltk.core.SourceRange;
 import org.eclipse.dltk.internal.core.SourceMethod;
-import org.eclipse.dltk.internal.core.SourceRange;
 import org.eclipse.php.core.codeassist.ICompletionContext;
-import org.eclipse.php.internal.core.PHPVersion;
-import org.eclipse.php.internal.core.ast.nodes.ASTNode;
-import org.eclipse.php.internal.core.ast.nodes.ASTParser;
-import org.eclipse.php.internal.core.ast.nodes.Program;
-import org.eclipse.php.internal.core.codeassist.ICompletionReporter;
+import org.eclipse.php.core.codeassist.ICompletionReporter;
 import org.eclipse.php.internal.core.codeassist.strategies.AbstractCompletionStrategy;
-import org.eclipse.php.internal.core.typeinference.FakeMethod;
 
 public class InControllerNewActionStrategy extends AbstractCompletionStrategy {
 
@@ -46,7 +40,7 @@ public class InControllerNewActionStrategy extends AbstractCompletionStrategy {
 
 		ctx.getOffset();
 
-		SourceRange replacementRange = this.getReplacementRange(ctx);
+		ISourceRange replacementRange = this.getReplacementRange(ctx);
 		
 		int offset = replacementRange.getOffset();
 		int length = replacementRange.getLength();

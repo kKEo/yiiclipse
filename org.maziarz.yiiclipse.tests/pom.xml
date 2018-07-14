@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.maziarz.yiiclipse.parent</artifactId>
+		<groupId>org.maziarz</groupId>
+		<version>1.18.7-SNAPSHOT</version>
+		<relativePath>../org.maziarz.yiiclipse.parent</relativePath>
+	</parent>
+	<groupId>org.maziarz</groupId>
+	<artifactId>org.maziarz.yiiclipse</artifactId>
+	<version>1.18.7-SNAPSHOT</version>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<configuration>
+					<testSuite>org.eclipse.equinox.p2.tests</testSuite>
+					<testClass>org.eclipse.equinox.p2.tests.AutomatedTests</testClass>
+					<argLine>-Xmx512m</argLine>
+					<appArgLine>-nl en</appArgLine>
+					<bundleStartLevel>
+						<bundle>
+							<id>org.eclipse.equinox.ds</id>
+							<level>1</level>
+							<autoStart>true</autoStart>
+						</bundle>
+					</bundleStartLevel>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

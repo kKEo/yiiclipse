@@ -1,17 +1,10 @@
 package org.maziarz.yiiclipse.codegen;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.Program;
+import org.junit.Test;
 
 import junit.framework.Assert;
-
-import org.eclipse.php.internal.core.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.ast.nodes.ArrayElement;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.ExpressionStatement;
-import org.eclipse.php.internal.core.ast.nodes.Program;
-import org.junit.Test;
 
 public class ArrayMapperScalarTests extends BaseArrayMapperTest{
 

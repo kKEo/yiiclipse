@@ -88,7 +88,4 @@ public class AliasesTest {
 		Assert.assertEquals(buildPath(pathToFramework,"zii","widgets", "jui", "CJuiTabs"), path.toOSString());
 	}
 	
-
-	
-	
 }
