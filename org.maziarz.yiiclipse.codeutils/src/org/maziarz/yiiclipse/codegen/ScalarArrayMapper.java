@@ -1,9 +1,9 @@
 package org.maziarz.yiiclipse.codegen;
 
 
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.Scalar;
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.Scalar;
 
 public class ScalarArrayMapper extends ObjectArrayMapper {
 

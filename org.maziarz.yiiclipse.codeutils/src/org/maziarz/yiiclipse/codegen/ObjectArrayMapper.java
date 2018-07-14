@@ -1,8 +1,8 @@
 package org.maziarz.yiiclipse.codegen;
 
 
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.Expression;
 
 public abstract class ObjectArrayMapper {
 	

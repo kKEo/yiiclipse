@@ -3,10 +3,10 @@ package org.maziarz.yiiclipse.codegen;
 
 import java.util.Collection;
 
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.ast.nodes.ArrayElement;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.ArrayCreation;
+import org.eclipse.php.core.ast.nodes.ArrayElement;
+import org.eclipse.php.core.ast.nodes.Expression;
 
 public class CollectionArrayMapper extends ObjectArrayMapper {
 

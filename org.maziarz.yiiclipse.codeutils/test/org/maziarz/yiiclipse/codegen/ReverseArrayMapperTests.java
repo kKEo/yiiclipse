@@ -3,14 +3,14 @@ package org.maziarz.yiiclipse.codegen;
 import java.io.StringReader;
 import java.util.Map;
 
-import junit.framework.Assert;
-
 import org.eclipse.dltk.ast.declarations.ModuleDeclaration;
 import org.eclipse.dltk.ast.parser.IModuleDeclaration;
-import org.eclipse.php.internal.core.PHPVersion;
+import org.eclipse.php.core.PHPVersion;
 import org.eclipse.php.internal.core.compiler.ast.parser.AbstractPHPSourceParser;
 import org.eclipse.php.internal.core.compiler.ast.parser.PHPSourceParserFactory;
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class ReverseArrayMapperTests {
 
@@ -49,13 +49,13 @@ public class ReverseArrayMapperTests {
 		AbstractPHPSourceParser parser = PHPSourceParserFactory.createParser(PHPVersion.PHP5_3);
 		IModuleDeclaration m = null;
 		try {
-			m = parser.parse(new StringReader(initialContent), null, true);
+			m = parser.parse(new StringReader(initialContent), null, true, false);
 		} catch (Exception e) {
 		}
 		if (m instanceof ModuleDeclaration) {
 			ModuleDeclaration md = (ModuleDeclaration) m;
-			Object array = ((org.eclipse.php.internal.core.compiler.ast.nodes.ExpressionStatement) md.getStatements().get(0)).getExpr();
-			Map map = ArrayMapper.getMap((org.eclipse.php.internal.core.compiler.ast.nodes.ArrayCreation) array);
+			Object array = ((org.eclipse.php.core.compiler.ast.nodes.ExpressionStatement) md.getStatements().get(0)).getExpr();
+			Map map = ArrayMapper.getMap((org.eclipse.php.core.compiler.ast.nodes.ArrayCreation) array);
 			Assert.assertEquals(expected, map.toString());
 		}
 	}

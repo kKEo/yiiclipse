@@ -4,11 +4,10 @@ package org.maziarz.yiiclipse.codegen;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.ASTNode;
-import org.eclipse.php.internal.core.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.ast.nodes.ArrayElement;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.ArrayCreation;
+import org.eclipse.php.core.ast.nodes.ArrayElement;
+import org.eclipse.php.core.ast.nodes.Expression;
 
 public class MapArrayMapper extends ObjectArrayMapper {
 

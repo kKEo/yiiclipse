@@ -2,22 +2,18 @@ package org.maziarz.yiiclipse.codegen;
 
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.ast.nodes.ArrayElement;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.ExpressionStatement;
-import org.eclipse.php.internal.core.ast.nodes.Program;
-import org.eclipse.php.internal.core.ast.nodes.Scalar;
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.ArrayCreation;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.ExpressionStatement;
+import org.eclipse.php.core.ast.nodes.Program;
 
 /**
  * Translates Lists and HashMap object into relevant PHP array 
- * @author krma
  */
 public class ArrayMapper {
 
@@ -76,9 +72,9 @@ public class ArrayMapper {
 		return "'"+string+"'";
 	}
 	
-	public static Map getMap(org.eclipse.php.internal.core.compiler.ast.nodes.ArrayCreation array){
-		Map map = new LinkedHashMap(); 
-		for (org.eclipse.php.internal.core.compiler.ast.nodes.ArrayElement el : array.getElements()){
+	public static Map<Object, Object> getMap(org.eclipse.php.core.compiler.ast.nodes.ArrayCreation array){
+		Map<Object, Object> map = new LinkedHashMap<Object, Object>(); 
+		for (org.eclipse.php.core.compiler.ast.nodes.ArrayElement el : array.getElements()){
 			if (el.getKey() != null) {
 				map.put(getStringValue(el.getKey()), getStringValue(el.getValue()));
 			} else {
@@ -89,10 +85,10 @@ public class ArrayMapper {
 	}
 	
 	protected static Object getStringValue(org.eclipse.dltk.ast.expressions.Expression expression){
-		if (expression instanceof org.eclipse.php.internal.core.compiler.ast.nodes.Scalar){
-			return ((org.eclipse.php.internal.core.compiler.ast.nodes.Scalar)expression).getValue();
-		} else if (expression instanceof org.eclipse.php.internal.core.compiler.ast.nodes.ArrayCreation){
-			return getMap((org.eclipse.php.internal.core.compiler.ast.nodes.ArrayCreation)expression);
+		if (expression instanceof org.eclipse.php.core.compiler.ast.nodes.Scalar){
+			return ((org.eclipse.php.core.compiler.ast.nodes.Scalar)expression).getValue();
+		} else if (expression instanceof org.eclipse.php.core.compiler.ast.nodes.ArrayCreation){
+			return getMap((org.eclipse.php.core.compiler.ast.nodes.ArrayCreation)expression);
 		}
 		return "<NONE>";
 	}

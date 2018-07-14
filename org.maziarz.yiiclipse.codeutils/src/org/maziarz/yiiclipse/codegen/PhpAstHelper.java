@@ -4,20 +4,19 @@ package org.maziarz.yiiclipse.codegen;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.php.core.ast.nodes.AST;
+import org.eclipse.php.core.ast.nodes.Block;
+import org.eclipse.php.core.ast.nodes.ClassDeclaration;
+import org.eclipse.php.core.ast.nodes.Expression;
+import org.eclipse.php.core.ast.nodes.FunctionDeclaration;
+import org.eclipse.php.core.ast.nodes.FunctionInvocation;
+import org.eclipse.php.core.ast.nodes.Identifier;
+import org.eclipse.php.core.ast.nodes.MethodDeclaration;
+import org.eclipse.php.core.ast.nodes.MethodInvocation;
+import org.eclipse.php.core.ast.nodes.Scalar;
+import org.eclipse.php.core.ast.nodes.SingleFieldDeclaration;
+import org.eclipse.php.core.ast.nodes.VariableBase;
 import org.eclipse.php.core.compiler.PHPFlags;
-import org.eclipse.php.internal.core.ast.nodes.AST;
-import org.eclipse.php.internal.core.ast.nodes.ArrayCreation;
-import org.eclipse.php.internal.core.ast.nodes.Block;
-import org.eclipse.php.internal.core.ast.nodes.ClassDeclaration;
-import org.eclipse.php.internal.core.ast.nodes.Expression;
-import org.eclipse.php.internal.core.ast.nodes.FunctionDeclaration;
-import org.eclipse.php.internal.core.ast.nodes.FunctionInvocation;
-import org.eclipse.php.internal.core.ast.nodes.Identifier;
-import org.eclipse.php.internal.core.ast.nodes.MethodDeclaration;
-import org.eclipse.php.internal.core.ast.nodes.MethodInvocation;
-import org.eclipse.php.internal.core.ast.nodes.SingleFieldDeclaration;
-import org.eclipse.php.internal.core.ast.nodes.VariableBase;
-import org.eclipse.php.internal.core.compiler.ast.nodes.Scalar;
 
 public class PhpAstHelper {
 

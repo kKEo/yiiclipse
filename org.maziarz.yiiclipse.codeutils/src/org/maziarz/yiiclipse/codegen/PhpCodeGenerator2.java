@@ -9,8 +9,8 @@ import org.eclipse.dltk.ast.parser.IModuleDeclaration;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.php.internal.core.PHPVersion;
-import org.eclipse.php.internal.core.ast.nodes.Program;
+import org.eclipse.php.core.PHPVersion;
+import org.eclipse.php.core.ast.nodes.Program;
 import org.eclipse.php.internal.core.compiler.ast.parser.AbstractPHPSourceParser;
 import org.eclipse.php.internal.core.compiler.ast.parser.PHPSourceParserFactory;
 import org.eclipse.text.edits.MalformedTreeException;
@@ -38,7 +38,7 @@ public class PhpCodeGenerator2 {
 		}
 		
 		try {
-			IModuleDeclaration m = parser.parse(new StringReader(initialContent), null, true);
+			IModuleDeclaration m = parser.parse(new StringReader(initialContent),null, true, false);
 			if (m instanceof ModuleDeclaration) {
 				ModuleDeclaration md = (ModuleDeclaration) m;
 				

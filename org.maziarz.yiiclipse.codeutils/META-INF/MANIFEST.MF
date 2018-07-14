@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.maziarz.yiiclipse.codeutils;singleton:=true
 Bundle-Version: 1.18.7.qualifier
 Require-Bundle: org.eclipse.php.core,
  org.eclipse.dltk.core
-Import-Package: org.eclipse.dltk.ast.declarations,
+Import-Package: org.eclipse.core.runtime;version="3.5.0",
+ org.eclipse.dltk.ast.declarations,
  org.eclipse.dltk.ast.parser,
  org.eclipse.jface.text,
  org.eclipse.jface.text.formatter,

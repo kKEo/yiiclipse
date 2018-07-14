@@ -9,9 +9,9 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.formatter.IContentFormatter;
-import org.eclipse.php.internal.core.PHPVersion;
-import org.eclipse.php.internal.core.ast.nodes.ASTParser;
-import org.eclipse.php.internal.core.ast.nodes.Program;
+import org.eclipse.php.core.PHPVersion;
+import org.eclipse.php.core.ast.nodes.ASTParser;
+import org.eclipse.php.core.ast.nodes.Program;
 import org.eclipse.text.edits.MalformedTreeException;
 import org.eclipse.text.edits.TextEdit;
 
@@ -34,7 +34,7 @@ public class PhpCodeGenerator {
 		
 		this.initialContent = initialContent;
 		
-		parser = ASTParser.newParser(PHPVersion.PHP5_3, true);
+		parser = ASTParser.newParser(PHPVersion.PHP5_3, true, true);
 		
 		if (initialContent != null) {
 			try {
